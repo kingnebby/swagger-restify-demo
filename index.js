@@ -19,6 +19,9 @@ const db = {
   ]
 };
 
+const cors = corsMw({})
+server.pre(cors.preflight)
+server.use(cors.actual)
 server.use(restify.plugins.bodyParser());
 server.use(restify.plugins.queryParser());
 
@@ -38,14 +41,16 @@ server.get("/champion", (req, res, next) => {
 
 // Standard rest verbs
 server.post("/champion", (req, res, next) => {
+  let id
   if (req.body) {
+    id = getNextId();
     db.champions.push({
-      id: getNextId(),
-      name: body.name,
-      roles: body.roles
+      id: id,
+      name: req.body.name,
+      roles: req.body.roles
     });
   }
-  res.send(200);
+  res.send(200, db.champions[db.champions.length - 1]);
   next();
 });
 // Example with route params

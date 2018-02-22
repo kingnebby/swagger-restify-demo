@@ -1,6 +1,21 @@
-# Documenting Restify with Swagger
+# League of Legends Champion API
+> A sample code base.
+
+This is the code that was used in the tutorial "Give Restify Some Swagger".
 
 Inspired by [a Scotch.io tutorial](https://scotch.io/tutorials/document-your-already-existing-apis-with-swagger).
 
-We'll start with an existing RESTful API that manages League of Legends Champions. We'll use Swagger to first document the existing API and second to provide some sweet UI tools to view our API.
+Complete code can be found on the branch `release/1.0`
+
+## Topics Covered
+
+* Setting up with Swagger
+* Documenting the existing API
+* Including the Swagger-UI as your hosted documentation
+
+
+## Special Thanks
+
+* [Collinear Group](https://www.collineargroup.com)
+* [Scotch.io](https://scotch.io)
 
