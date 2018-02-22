@@ -1,0 +1,15 @@
+{
+  "name": "swagger-restify-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "restify": "^6.3.4",
+    "restify-cors-middleware": "^1.1.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
