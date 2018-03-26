@@ -93,6 +93,22 @@ server.on("error", function(err) {
   console.error("Server error: ", err);
 });
 
+// Serve the swagger-ui pages.
+server.get(/\/doc\/.*/, restify.plugins.serveStatic({
+  directory: './api',
+  default: 'index.html',
+}))
+// Helper to reroute people who don't type exaclty the write URL.
+server.get(/(^\/$|^\/doc$)/, (req, res, next) => {
+  res.redirect('/doc/', next)
+})
+// Serves just the Swagger spec for various consumption, like
+// the Swagger-UI, and the online Swagger-Editor.
+server.get(/^\/swagger$/, restify.plugins.serveStatic({
+  directory: './api',
+  file: 'swagger/swagger.yaml',
+}))
+
 const port = 9005;
 server.listen(port, function() {
   console.log(`App listening at http://localhost:${port}`);

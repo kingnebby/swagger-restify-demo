@@ -1,0 +1,92 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: LoL Champions
+host: localhost:9005
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+paths:
+  /champion:
+    get:
+      description: Lists all champions or only those whose name matches the query.
+      parameters:
+        - name: name
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Champion"
+    post:
+      parameters:
+        - name: champion
+          in: body
+          schema:
+            $ref: '#/definitions/ChampionUpdate'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: string
+  /champion/{id}:
+    parameters:
+      - name: id
+        type: string
+        in: path
+        required: true
+    get:
+      description: Get the champion with the matching id
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Champion"
+    put:
+      description: Update the champion
+      parameters:
+        - name: champion
+          in: body
+          schema:
+            $ref: '#/definitions/ChampionUpdate'
+      responses:
+        200:
+          description: Success
+    delete:
+      description: Delete the champion
+      responses:
+        200:
+          description: Success
+definitions:
+  Champion:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+    required:
+      - name
+  ChampionUpdate:
+    type: object
+    properties:
+      name:
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+    required: [name, roles]
